@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@common/*": ["common/*"]
+    },
+    "lib": [
+      "ES2022"
+    ],
+    "resolveJsonModule": true
+  }
+}

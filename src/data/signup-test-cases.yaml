@@ -1,0 +1,244 @@
+- id: TC001
+  name: "Valid signup with newsletter"
+  input:
+    title: "Mr"
+    email: "john.doe+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1990-01-01
+    signupForNewsletter: true
+    receiveOffersFromPartners: false
+    address:
+      firstName: "John"
+      lastName: "Doe"
+      company: "Example Inc."
+      address1: "123 Main St"
+      address2: "Apt 4B"
+      city: "Anytown"
+      state: "CA"
+      zip: "12345"
+      mobile: "123-456-7890"
+  expected:
+    success: true
+
+- id: TC002
+  name: "Valid signup without newsletter"
+  input:
+    title: "Ms"
+    email: "jane.doe+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1985-05-15
+    signupForNewsletter: false
+    receiveOffersFromPartners: true
+    address:
+      firstName: "Jane"
+      lastName: "Doe"
+      company: "Example Inc."
+      address1: "456 Elm St"
+      address2: ""
+      city: "Othertown"
+      state: "NY"
+      zip: "67890"
+      mobile: "987-654-3210"
+  expected:
+    success: true
+
+- id: TC003
+  name: "Invalid email format"
+  input:
+    title: "Dr"
+    email: "invalid-email"
+    password: "Password123!"
+    dateOfBirth: 1970-12-31
+    signupForNewsletter: true
+    receiveOffersFromPartners: true
+    address:
+      firstName: "Invalid"
+      lastName: "Email"
+      company: "Example Inc."
+      address1: "789 Oak St"
+      address2: ""
+      city: "Sometown"
+      state: "TX"
+      zip: "54321"
+      mobile: "555-555-5555"
+  expected:
+    success: false
+    errorMessage: "Invalid email address"
+
+- id: TC004
+  name: "Password too short"
+  input:
+    title: "Mr"
+    email: "john.smith+{{suffix}}@example.com"
+    password: "short"
+    dateOfBirth: 2000-07-07
+    signupForNewsletter: false
+    receiveOffersFromPartners: false
+    address:
+      firstName: "John"
+      lastName: "Smith"
+      company: "Example Inc."
+      address1: "101 Pine St"
+      address2: ""
+      city: "Newcity"
+      state: "FL"
+      zip: "11111"
+      mobile: "111-111-1111"
+  expected:
+    success: false
+    errorMessage: "Password is too short"
+
+- id: TC005
+  name: "Valid signup with suite address"
+  input:
+    title: "Mrs"
+    email: "mary.jane+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1995-03-25
+    signupForNewsletter: true
+    receiveOffersFromPartners: false
+    address:
+      firstName: "Mary"
+      lastName: "Jane"
+      company: "Example Inc."
+      address1: "202 Birch St"
+      address2: "Suite 5"
+      city: "Oldtown"
+      state: "WA"
+      zip: "22222"
+      mobile: "222-222-2222"
+  expected:
+    success: true
+
+- id: TC006
+  name: "Duplicate email"
+  input:
+    title: "Mr"
+    email: "duplicate+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1980-11-11
+    signupForNewsletter: false
+    receiveOffersFromPartners: true
+    address:
+      firstName: "Duplicate"
+      lastName: "User"
+      company: "Example Inc."
+      address1: "303 Cedar St"
+      address2: ""
+      city: "Newtown"
+      state: "OR"
+      zip: "33333"
+      mobile: "333-333-3333"
+  expected:
+    success: false
+    errorMessage: "Email already exists"
+
+- id: TC007
+  name: "Valid signup on leap day"
+  input:
+    title: "Ms"
+    email: "alice.wonderland+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1992-02-29
+    signupForNewsletter: true
+    receiveOffersFromPartners: true
+    address:
+      firstName: "Alice"
+      lastName: "Wonderland"
+      company: "Example Inc."
+      address1: "404 Maple St"
+      address2: ""
+      city: "Wonderland"
+      state: "NV"
+      zip: "44444"
+      mobile: "444-444-4444"
+  expected:
+    success: true
+
+- id: TC008
+  name: "Valid signup without offers"
+  input:
+    title: "Mr"
+    email: "bob.builder+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1988-08-08
+    signupForNewsletter: false
+    receiveOffersFromPartners: false
+    address:
+      firstName: "Bob"
+      lastName: "Builder"
+      company: "Example Inc."
+      address1: "505 Spruce St"
+      address2: ""
+      city: "Buildtown"
+      state: "UT"
+      zip: "55555"
+      mobile: "555-555-5555"
+  expected:
+    success: true
+
+- id: TC009
+  name: "Valid signup with Dr title"
+  input:
+    title: "Dr"
+    email: "charlie.brown+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1975-09-09
+    signupForNewsletter: true
+    receiveOffersFromPartners: false
+    address:
+      firstName: "Charlie"
+      lastName: "Brown"
+      company: "Example Inc."
+      address1: "606 Fir St"
+      address2: ""
+      city: "Peanuts"
+      state: "CO"
+      zip: "66666"
+      mobile: "666-666-6666"
+  expected:
+    success: true
+
+- id: TC010
+  name: "Valid signup with offers"
+  input:
+    title: "Mr"
+    email: "david.tennant+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1983-10-10
+    signupForNewsletter: false
+    receiveOffersFromPartners: true
+    address:
+      firstName: "David"
+      lastName: "Tennant"
+      company: "Example Inc."
+      address1: "707 Willow St"
+      address2: ""
+      city: "Gallifrey"
+      state: "NM"
+      zip: "77777"
+      mobile: "777-777-7777"
+  expected:
+    success: true
+
+- id: TC011
+  name: "Valid signup with Ms title"
+  input:
+    title: "Ms"
+    email: "eva.green+{{suffix}}@example.com"
+    password: "Password123!"
+    dateOfBirth: 1999-12-12
+    signupForNewsletter: true
+    receiveOffersFromPartners: false
+    address:
+      firstName: "Eva"
+      lastName: "Green"
+      company: "Example Inc."
+      address1: "808 Ash St"
+      address2: ""
+      city: "Greenland"
+      state: "AZ"
+      zip: "88888"
+      mobile: "888-888-8888"
+  expected:
+    success: true
