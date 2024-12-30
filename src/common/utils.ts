@@ -1,7 +1,6 @@
-import {test} from "playwright/test";
+import { test } from "playwright/test";
 import * as Mustache from "mustache";
-import * as moment from 'moment';
-
+import * as moment from "moment";
 
 /**
  * Decorator function to wrap a method in a Playwright test step.
@@ -11,18 +10,18 @@ import * as moment from 'moment';
  * @returns A decorator function.
  */
 export function step(stepName?: string) {
-    return function (target: Function, context: ClassMethodDecoratorContext) {
-        return function replacementMethod(...args: any) {
-            if (stepName) {
-                const params = Object.assign({}, args);
-                stepName = render_template(stepName, params);
-            }
-            const name = stepName || this.constructor.name + '.' + (context.name as string);
-            return test.step(name, async () => {
-                return await target.call(this, ...args);
-            });
-        };
-    }
+  return function (target: Function, context: ClassMethodDecoratorContext) {
+    return function replacementMethod(...args: any) {
+      if (stepName) {
+        const params = Object.assign({}, args);
+        stepName = render_template(stepName, params);
+      }
+      const name = stepName || this.constructor.name + "." + (context.name as string);
+      return test.step(name, async () => {
+        return await target.call(this, ...args);
+      });
+    };
+  };
 }
 
 /**
@@ -31,15 +30,14 @@ export function step(stepName?: string) {
  * @returns A random string.
  */
 export function generateRandomString(length: number): string {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }
-
 
 /**
  * Renders a Mustache template with the provided data.
@@ -48,7 +46,7 @@ export function generateRandomString(length: number): string {
  * @returns The rendered template.
  */
 export function render_template(template: string, data: object): string {
-    return Mustache.render(template, data);
+  return Mustache.render(template, data);
 }
 
 /**
@@ -58,9 +56,9 @@ export function render_template(template: string, data: object): string {
  * @returns A Date object.
  */
 export function ensureDate(date: Date | string, format?: string): Date {
-    if (date instanceof Date) {
-        return date;
-    } else {
-        return format ? moment(date, format).toDate() : new Date(date);
-    }
+  if (date instanceof Date) {
+    return date;
+  } else {
+    return format ? moment(date, format).toDate() : new Date(date);
+  }
 }

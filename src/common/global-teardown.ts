@@ -1,5 +1,3 @@
-import {FullConfig} from "playwright/test";
+import { FullConfig } from "playwright/test";
 
-export default function globalSetup(config: FullConfig) {
-    
-}
+export default function globalSetup(config: FullConfig) {}
