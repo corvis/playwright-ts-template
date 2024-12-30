@@ -1,5 +1,8 @@
 node_modules/
 outputs/
+report/
+test-results/
+tests-out/
 .idea/
 .env
 notes.txt

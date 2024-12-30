@@ -8,7 +8,7 @@ tests using TypeScript and Playwright.
 
 **Prerequisites**
 
-* Node.js (version 14 or higher)
+* Node.js (version 16 or higher)
 * npm (version 6 or higher)
 
 # Installation

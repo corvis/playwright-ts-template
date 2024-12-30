@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test';
-import dotenv from 'dotenv';
-import path from 'path';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 import * as env from 'env-var';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -26,11 +26,12 @@ export default defineConfig({
     /* Opt out of parallel tests on CI. */
     workers: env.get("PARALLEL_WORKERS").default("3").asIntPositive(),
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-    reporter: [["list"], ["html", { open: "never", outputFolder: "outputs/report" }]],
+    reporter: [["list"], ["html", { open: "never", outputFolder: "report" }]],
 
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-    globalSetup: "./src/common/global-setup",
-    globalTeardown: "./src/common/global-teardown",
+    globalSetup: "./src/common/global-setup.ts",
+    globalTeardown: "./src/common/global-teardown.ts",
+    tsconfig: "./tsconfig.json",
     use: {
         // Emulates the user locale.
         locale: "en-US",
