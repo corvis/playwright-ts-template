@@ -1,6 +1,7 @@
 node_modules/
 outputs/
 report/
+performance-report/
 test-results/
 tests-out/
 .idea/

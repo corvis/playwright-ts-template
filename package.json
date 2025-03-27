@@ -49,6 +49,7 @@
     "moment": "^2.30.1",
     "mustache": "^4.2.0",
     "playwright": "^1.49.1",
+    "playwright-performance": "^2.0.4",
     "uuid": "^11.0.3"
   }
 }
