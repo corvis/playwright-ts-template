@@ -4,15 +4,15 @@
   "description": "Sandbox for playing around with playwright",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf ./output",
+    "clean": "rimraf ./outputs ./report ./performance-report",
     "test": "npx playwright test",
     "test:smoke": "npx playwright test --grep @smoke",
     "headless": "npx playwright test",
     "headed": "npx playwright test --headed --workers 1",
     "ui": "npx playwright test --ui",
     "parallel": "npx playwright test --workers 4",
-    "lint": "eslint ./src/**/*.ts",
-    "fix": "eslint --fix ./src/**/*.ts",
+    "lint": "eslint \"src/**/*.ts\"",
+    "fix": "eslint --fix \"src/**/*.ts\"",
     "format": "prettier --write 'src/**/*.ts' 'src/**/*.yaml'",
     "postinstall": "playwright install chromium firefox"
   },
